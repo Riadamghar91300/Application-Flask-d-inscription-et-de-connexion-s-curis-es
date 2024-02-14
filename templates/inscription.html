@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulaire d'Inscription</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <form id="inscriptionForm" method="POST" action="{{ url_for('inscription') }}" onsubmit="return submitInscriptionForm()">
+    <img src="{{ url_for('static', filename='login.png') }}" alt="Logo de l'entreprise" class="logo">
+    {{ form.hidden_tag() }}  {# Ajout du champ caché pour le jeton CSRF #}
+    <label for="identifiant">Identifiant :</label>
+    {{ form.identifiant(class="form-control", id="identifiant") }}  
+    <label for="motDePasse">Mot de passe :</label>
+    {{ form.mot_de_passe(class="form-control", id="motDePasse") }}  {# Champ de mot de passe avec classe CSS Bootstrap #}
+    {{ form.submit(class="btn btn-primary") }}  {# Bouton de soumission avec classe CSS Bootstrap #}
+    <input type="reset" value="Réinitialiser" class="btn">  {# Bouton de réinitialisation #}
+    <input type="button" value="Retour à la Connexion" onclick="redirectToLogin()" class="btn">
+  </form>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
